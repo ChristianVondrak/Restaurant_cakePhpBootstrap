@@ -1,11 +1,22 @@
 <?php  
 class MeserosController extends AppController{
 
-    public $helpers = array('Html','Form', 'Time');
-    public $components = array('Session');
+    public $helpers = array('Html','Form', 'Time','Js');
+    public $components = array('Session','Paginator','RequestHandler');
+    public $paginate = array(
+        'limit'=>3,
+        'order'=>array(
+            'Mesero.id'=>'asc'
+        )
+    );
 
     public function index(){
-        $this->set('meseros',$this->Mesero->find('all'));
+        // $this->set('meseros',$this->Mesero->find('all'));
+        $this->Mesero->recursive = 0;
+
+        $this->paginate['Mesero']['limit']=3;
+        $this->paginate['Mesero']['order']=array('Mesero.id'=>'asc');
+        $this->set('meseros',$this->paginate());
     }
 
 

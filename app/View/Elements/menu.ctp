@@ -12,14 +12,18 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class=""><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Meseros <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><?php echo $this->Html->link('Lista meseros',array('controller'=>'meseros','action'=>'index')); ?></li>
-                        <li><?php echo $this->Html->link('Nuevo mesero',array('controller'=>'meseros','action'=>'nuevo')); ?></li>
-                        
+                        <li><?php echo $this->Html->link('Nuevo mesero',array('controller'=>'meseros','action'=>'nuevo')); ?></li>      
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mesas <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><?php echo $this->Html->link('Lista mesas',array('controller'=>'mesas','action'=>'index')); ?></li>
+                        <li><?php echo $this->Html->link('Nueva mesa',array('controller'=>'mesas','action'=>'nuevo')); ?></li>      
                     </ul>
                 </li>
             </ul>
