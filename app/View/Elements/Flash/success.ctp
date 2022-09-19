@@ -1,0 +1,1 @@
+<div id="<?php echo $key; ?>Message" class="row alert alert-success col-md-9 col-md-offset-1"><?php echo $message; ?></div>
