@@ -1,11 +1,13 @@
 <div class="row platillos form col-sm-8 col-sm-offset-2">
-	<?php echo $this->Form->create('Platillo'); ?>
+	<?php echo $this->Form->create('Platillo',array('type'=>'file','novalidate'=>'novalidate')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Platillo'); ?></legend>
 		<?php
 		echo $this->Form->input('nombre', ['class' => 'form-control']);
 		echo $this->Form->input('descripcion', ['class' => 'form-control']);
 		echo $this->Form->input('precio', ['class' => 'form-control']);
+		echo $this->Form->input('foto', ['class' => 'form-control','type'=>'file','label'=>'Foto']);
+		echo $this->Form->input('foto_dir', ['type'=>'hidden']);
 		echo $this->Form->input('categoria_platillo_id', ['class' => 'form-control']);
 		echo $this->Form->input('Cocinero', ['class' => 'form-control']);
 		?>

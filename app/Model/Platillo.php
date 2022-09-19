@@ -15,6 +15,23 @@ class Platillo extends AppModel {
  */
 	public $displayField = 'nombre';
 
+	public $actsAs = array(
+		'Upload.Upload'=>array(
+			'foto'=>array(
+				'fields'=>array(
+					'dir'=>'foto_dir'
+				),
+				'thumbnailMethod'=>'php', 
+				'thumbnailSizes'=>array(
+					'vga'=>'640x480',
+					'thumb'=>'150x150'
+				),
+				'deleteOnUpdate'=>true,
+				'deleteFolderOnDelete'=>true
+			)
+		)
+	);
+
 /**
  * Validation rules
  *

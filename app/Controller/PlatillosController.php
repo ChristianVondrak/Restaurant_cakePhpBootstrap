@@ -49,10 +49,10 @@ class PlatillosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Platillo->create();
 			if ($this->Platillo->save($this->request->data)) {
-				$this->Flash->success(__('The platillo has been saved.'));
+				$this->Flash->success('The platillo has been saved.','default',array('class'=>'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The platillo could not be saved. Please, try again.'));
+				$this->Flash->error('The platillo could not be saved. Please, try again.','default',array('class'=>'alert alert-danger'));
 			}
 		}
 		$categoriaPlatillos = $this->Platillo->CategoriaPlatillo->find('list');
