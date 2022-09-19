@@ -10,7 +10,10 @@
 		echo $this->Form->input('Cocinero', ['class' => 'form-control']);
 		?>
 	</fieldset>
-	<?php echo $this->Form->end(__('Submit')); ?>
+	<div class="btn-submit">
+	<button type="submit" value="Submit" class="btn btn-primary">Crear platillo</button>
+	</div>
+	<?php echo $this->Form->end(); ?>
 </div>
 
 <div class="btn-group col-sm-8 col-sm-offset-2 btn-action">

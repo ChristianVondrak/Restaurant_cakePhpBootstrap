@@ -3,6 +3,9 @@
 }
 
 .btn-action{
-    bottom: 20px;
-    left: 100px;
+    bottom: 34px;
+    left: 125px;
+}
+.btn-submit{
+    padding-top:10px;
 }
