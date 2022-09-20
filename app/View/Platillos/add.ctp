@@ -1,3 +1,7 @@
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+</head>
+
 <div class="row platillos form col-sm-8 col-sm-offset-2">
 	<?php echo $this->Form->create('Platillo',array('type'=>'file','novalidate'=>'novalidate')); ?>
 	<fieldset>
@@ -6,7 +10,7 @@
 		echo $this->Form->input('nombre', ['class' => 'form-control']);
 		echo $this->Form->input('descripcion', ['class' => 'form-control']);
 		echo $this->Form->input('precio', ['class' => 'form-control']);
-		echo $this->Form->input('foto', ['class' => 'form-control','type'=>'file','label'=>'Foto']);
+		echo $this->Form->input('foto', ['class' => 'file','type'=>'file','label'=>'Foto','id'=>'foto','data-show-upload'=>'false','data-show-caption'=>'true']);
 		echo $this->Form->input('foto_dir', ['type'=>'hidden']);
 		echo $this->Form->input('categoria_platillo_id', ['class' => 'form-control']);
 		echo $this->Form->input('Cocinero', ['class' => 'form-control']);
@@ -16,6 +20,7 @@
 	<button type="submit" value="Submit" class="btn btn-primary">Crear platillo</button>
 	</div>
 	<?php echo $this->Form->end(); ?>
+
 </div>
 
 <div class="btn-group col-sm-8 col-sm-offset-2 btn-action">

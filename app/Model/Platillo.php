@@ -67,7 +67,39 @@ class Platillo extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'FileSize' => array(
+				'rule' => array('fileSize', '<=', '10MB'),
+				'message' => 'La imagen no puede ser mas grande que 10MB'
+			)
 		),
+		'foto'=>array(
+			'uploadError'=>array(
+				'rule'=>'uploadError',
+				'message'=>'Algo anda mal, intente de nuevo',
+				'on'=>'create')
+			// ,'isUnderPhpSizeLimit' => array(
+			// 	'rule' => 'isUnderPhpSizeLimit',
+			// 	'message' => 'File exceeds upload filesize limit'
+			// )
+			,'isValidMimeType' => array(
+				'rule' => array('isValidMimeType', array('image/jpeg','image/jpg', 'image/png')),
+				'message' => 'File is not a jpeg or png'
+			),
+			'isBelowMaxSize' => array(
+				'rule' => array('isBelowMaxSize', 5242880),
+				'message' => 'File is larger than the maximum filesize'
+			),
+			'isValidExtension' => array(
+				'rule' => array('isValidExtension', array('png', 'jpeg','jpg')),
+				'message' => 'File does not have a png, jpg or jpeg extension'
+			),
+			'checkUniqueName'=>array(
+				'rule'=>array('checkUniqueName'),
+				'message'=>'La imagen ya se encuentra registrada',
+				'on'=>'update'
+			)
+		),
+
 		'categoria_platillo_id' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -96,6 +128,16 @@ class Platillo extends AppModel {
 			'order' => ''
 		)
 	);
+
+	function checkUniqueName($data){
+		$isUnique=$this->find('first',array('fields'=>array('Platillo.foto'),'conditions'=>
+		array('Platillo.foto'=>$data['foto'])));
+		if(!empty($isUnique)){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 /**
  * hasAndBelongsToMany associations

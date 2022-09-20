@@ -22,6 +22,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <html>
 
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $cakeDescription ?>:
@@ -30,13 +32,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 	echo $this->Html->meta('icon');
 
-	echo $this->Html->css(array('style.css', 'bootstrap.min', 'bootstrap-theme.min'));
-	echo $this->Html->script(array('docs.min','jquery.min','bootstrap.min'));
+	echo $this->Html->css(array('style.css', 'bootstrap.min', 'bootstrap-theme.min','fileinput.min'));
+	echo $this->Html->script(array('docs.min','jquery.min','bootstrap.min','fileinput.min'));
 
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
 	echo $this->fetch('script');
 	?>
+	<script>
+		$.fn.fileinputBsVersion = '3.3.7';
+		$("#foto").fileinput();
+	</script>
 </head>
 
 <body>
@@ -45,14 +51,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <?php echo $this->element('menu') ?>
-
-	<div class="p-5 mb-4 bg-light rounded-3">
+	<?php echo $this->Flash->render(); ?>
 		
+	<div class="col-md-9 col-md-offset-1">
+	<?php echo $this->fetch('content'); ?>
 
-		<?php echo $this->Flash->render(); ?>
-
-		<?php echo $this->fetch('content'); ?>
 	</div>
+			
 
 
 </body>

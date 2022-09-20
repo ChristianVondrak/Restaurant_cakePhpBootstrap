@@ -1,27 +1,34 @@
-<div class="platillos form">
-<?php echo $this->Form->create('Platillo'); ?>
+<div class="row platillos form col-sm-8 col-sm-offset-2">
+	<?php echo $this->Form->create('Platillo', array('type' => 'file', 'novalidate' => 'novalidate')); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Platillo'); ?></legend>
-	<?php
+		<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('nombre');
-		echo $this->Form->input('descripcion');
-		echo $this->Form->input('precio');
-		echo $this->Form->input('categoria_platillo_id');
-		echo $this->Form->input('Cocinero');
-	?>
+		echo $this->Form->input('nombre', ['class' => 'form-control']);
+		echo $this->Form->input('descripcion', ['class' => 'form-control']);
+		echo $this->Form->input('precio', ['class' => 'form-control']);
+		echo $this->Form->input('foto', ['class' => 'file','type'=>'file','label'=>'Foto','id'=>'foto','data-show-upload'=>'false','data-show-caption'=>'true']);
+		echo $this->Form->input('foto_dir', ['type' => 'hidden']);
+		echo $this->Form->input('categoria_platillo_id', ['class' => 'form-control']);
+		echo $this->Form->input('Cocinero', ['class' => 'form-control']);
+		?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+	<div class="btn-submit">
+		<button type="submit" value="Submit" class="btn btn-primary">Crear platillo</button>
+	</div>
+	<?php echo $this->Form->end(); ?>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Platillo.id')), array('confirm' => __('Are you sure you want to delete # %s?', $this->Form->value('Platillo.id')))); ?></li>
-		<li><?php echo $this->Html->link(__('List Platillos'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Categoria Platillos'), array('controller' => 'categoria_platillos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Categoria Platillo'), array('controller' => 'categoria_platillos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Cocineros'), array('controller' => 'cocineros', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cocinero'), array('controller' => 'cocineros', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="btn-group col-sm-8 col-sm-offset-2 btn-action">
+	<div class="row">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			Actions <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><?php echo $this->Html->link(__('List Platillos'), array('action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link(__('List Categoria Platillos'), array('controller' => 'categoria_platillos', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Categoria Platillo'), array('controller' => 'categoria_platillos', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Cocineros'), array('controller' => 'cocineros', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Cocinero'), array('controller' => 'cocineros', 'action' => 'add')); ?> </li>
+		</ul>
+	</div>
 </div>
