@@ -13,7 +13,14 @@ class PlatillosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Session', 'RequestHandler');
+
+	public $paginate = array(
+        'limit' => 8,
+        'order' => array(
+            'Platillo.id' => 'asc'
+        )
+    );
 
 /**
  * index method
@@ -21,8 +28,9 @@ class PlatillosController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Platillo->recursive = 0;
-		$this->set('platillos', $this->Paginator->paginate());
+		$this->paginate['Platillo']['limit'] = 8;
+		$this->paginate['Platillo']['order'] = array('Platillo.id' => 'asc');
+		$this->set('platillos', $this->paginate());
 	}
 
 /**
