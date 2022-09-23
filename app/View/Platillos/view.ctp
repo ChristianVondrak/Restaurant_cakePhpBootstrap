@@ -1,3 +1,5 @@
+<?php echo $this->Html->script(array('addtocart.js'),array('inline'=>false)); ?>
+
 
 <h1><?php echo $platillo['Platillo']['nombre']; ?></h1>
 
@@ -12,10 +14,11 @@
 		<h3 class="h3-h"><strong><?php echo $platillo['Platillo']['nombre']; ?></strong></h3>
 
 		<br />
-
-		<p class="text-p"> Descripción: <?php echo ($platillo['Platillo']['descripcion']); ?></p>
-
 		<p class="text-p"> Precio: $ <span id="productprice"><?php echo h($platillo['Platillo']['precio']); ?></span></p>
+
+		<?php echo $this->Form->button('Agregar a pedido',array('class'=>'btn btn-primary addtocart', 'id' =>$platillo['Platillo']['id'])); ?>
+		<br /><br /><br />
+		<p class="text-p"> Descripción: <?php echo ($platillo['Platillo']['descripcion']); ?></p>
 
 		<p class="text-p"> Creado: <?php echo $platillo['Platillo']['created']; ?></p>
 

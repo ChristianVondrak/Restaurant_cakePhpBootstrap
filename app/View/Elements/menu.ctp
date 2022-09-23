@@ -44,7 +44,8 @@
                     </ul>
                 </li>
             </ul>
-
+    <?php echo $this->Html->link('Pedidos',array('controller'=>'pedidos','action'=>'view'),
+array('class'=>'btn btn-success navbar-btn')); ?>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

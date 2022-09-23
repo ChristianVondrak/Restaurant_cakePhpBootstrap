@@ -129,6 +129,14 @@ class Platillo extends AppModel {
 		)
 	);
 
+	public $hasMany = array(
+        'Pedido' => array(
+            'className' => 'Pedido',
+            'foreignKey' => 'platillo_id',
+            'dependent' => false
+        )
+    );
+
 	function checkUniqueName($data){
 		$isUnique=$this->find('first',array('fields'=>array('Platillo.foto'),'conditions'=>
 		array('Platillo.foto'=>$data['foto'])));

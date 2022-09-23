@@ -42,6 +42,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<script>
 		$.fn.fileinputBsVersion = '3.3.7';
 		$("#foto").fileinput();
+
+		var basePath = <?php echo Router::url('/'); ?>
 	</script>
 </head>
 
@@ -55,6 +57,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		
 	<div class="col-md-9 col-md-offset-1">
 	<?php echo $this->fetch('content'); ?>
+
+	<br/>
+	<div id="msg"></div>
 
 	</div>
 			
