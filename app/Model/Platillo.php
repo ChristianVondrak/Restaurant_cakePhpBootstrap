@@ -16,21 +16,21 @@ class Platillo extends AppModel {
 	public $displayField = 'nombre';
 
 	public $actsAs = array(
-		'Upload.Upload'=>array(
-			'foto'=>array(
-				'fields'=>array(
-					'dir'=>'foto_dir'
-				),
-				'thumbnailMethod'=>'php', 
-				'thumbnailSizes'=>array(
-					'vga'=>'640x480',
-					'thumb'=>'150x150'
-				),
-				'deleteOnUpdate'=>true,
-				'deleteFolderOnDelete'=>true
+			'Upload.Upload' => array(
+				'foto' => array(
+					'fields' => array(
+						'dir' => 'foto_dir'
+					),
+					'thumbnailMethod' => 'php',
+					'thumbnailSizes' => array(
+						'vga' => '640x480',
+						'thumb' => '150x150'
+					),
+					'deleteOnUpdate' => true,
+					'deleteFolderOnDelete' => true
+				)
 			)
-		)
-	);
+		);
 
 /**
  * Validation rules
@@ -39,8 +39,8 @@ class Platillo extends AppModel {
  */
 	public $validate = array(
 		'nombre' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -49,8 +49,8 @@ class Platillo extends AppModel {
 			),
 		),
 		'descripcion' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -67,42 +67,38 @@ class Platillo extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'FileSize' => array(
-				'rule' => array('fileSize', '<=', '10MB'),
-				'message' => 'La imagen no puede ser mas grande que 10MB'
-			)
 		),
-		'foto'=>array(
-			'uploadError'=>array(
-				'rule'=>'uploadError',
-				'message'=>'Algo anda mal, intente de nuevo',
-				'on'=>'create')
-			// ,'isUnderPhpSizeLimit' => array(
-			// 	'rule' => 'isUnderPhpSizeLimit',
-			// 	'message' => 'File exceeds upload filesize limit'
-			// )
-			,'isValidMimeType' => array(
-				'rule' => array('isValidMimeType', array('image/jpeg','image/jpg', 'image/png')),
-				'message' => 'File is not a jpeg or png'
+		'foto' => array(
+        	'uploadError' => array(
+				'rule' => 'uploadError',
+				'message' => 'Algo anda mal, intente nuevamente',
+				'on' => 'create'
 			),
-			'isBelowMaxSize' => array(
-				'rule' => array('isBelowMaxSize', 5242880),
-				'message' => 'File is larger than the maximum filesize'
+	    	'isUnderPhpSizeLimit' => array(
+	    		'rule' => 'isUnderPhpSizeLimit',
+	        	'message' => 'Archivo excede el límite de tamaño de archivo de subida'
+	        ),
+		    'isValidMimeType' => array(
+	    		'rule' => array('isValidMimeType', array('image/jpeg', 'image/png'), false),
+        		'message' => 'La imagen no es jpg ni png',
+	    	),
+		    'isBelowMaxSize' => array(
+	    		'rule' => array('isBelowMaxSize', 1048576),
+        		'message' => 'El tamaño de imagen es demasiado grande'
+	    	),
+		    'isValidExtension' => array(
+	    		'rule' => array('isValidExtension', array('jpg', 'png'), false),
+        		'message' => 'La imagen no tiene la extension jpg o png'
+	    	),
+		    'checkUniqueName' => array(
+                'rule' => array('checkUniqueName'),
+                'message' => 'La imagen ya se encuentra registrada',
+                'on' => 'update'
+        	),		
 			),
-			'isValidExtension' => array(
-				'rule' => array('isValidExtension', array('png', 'jpeg','jpg')),
-				'message' => 'File does not have a png, jpg or jpeg extension'
-			),
-			'checkUniqueName'=>array(
-				'rule'=>array('checkUniqueName'),
-				'message'=>'La imagen ya se encuentra registrada',
-				'on'=>'update'
-			)
-		),
-
 		'categoria_platillo_id' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -112,7 +108,7 @@ class Platillo extends AppModel {
 		),
 	);
 
-	// The Associations below have been created with all possible keys, those that are not needed can be removed
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
  * belongsTo associations
@@ -128,24 +124,27 @@ class Platillo extends AppModel {
 			'order' => ''
 		)
 	);
-
+	
 	public $hasMany = array(
-        'Pedido' => array(
-            'className' => 'Pedido',
-            'foreignKey' => 'platillo_id',
-            'dependent' => false
-        )
-    );
-
-	function checkUniqueName($data){
-		$isUnique=$this->find('first',array('fields'=>array('Platillo.foto'),'conditions'=>
-		array('Platillo.foto'=>$data['foto'])));
-		if(!empty($isUnique)){
-			return false;
-		}else{
-			return true;
-		}
-	}
+		'Pedido' => array(
+			'className' => 'Pedido',
+			'foreignKey' => 'platillo_id',
+			'dependent' => false
+		),
+		'OrdenItem' => array(
+			'className' => 'OrdenItem',
+			'foreignKey' => 'platillo_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)		
+	);
 
 /**
  * hasAndBelongsToMany associations
@@ -167,5 +166,19 @@ class Platillo extends AppModel {
 			'finderQuery' => '',
 		)
 	);
+
+	function checkUniqueName($data)
+	{
+	    $isUnique = $this->find('first', array('fields' => array('Platillo.foto'), 'conditions' => array('Platillo.foto' => $data['foto'])));
+
+	    if(!empty($isUnique))
+	    {
+	        return false;
+	    }
+	    else
+	    {
+	        return true;
+	    }
+	}
 
 }
