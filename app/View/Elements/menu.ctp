@@ -15,38 +15,49 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Meseros <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><?php echo $this->Html->link('Lista meseros',array('controller'=>'meseros','action'=>'index')); ?></li>
-                        <li><?php echo $this->Html->link('Nuevo mesero',array('controller'=>'meseros','action'=>'nuevo')); ?></li>      
+                        <li><?php echo $this->Html->link('Lista meseros', array('controller' => 'meseros', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link('Nuevo mesero', array('controller' => 'meseros', 'action' => 'nuevo')); ?></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mesas <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><?php echo $this->Html->link('Lista mesas',array('controller'=>'mesas','action'=>'index')); ?></li>
-                        <li><?php echo $this->Html->link('Nueva mesa',array('controller'=>'mesas','action'=>'nuevo')); ?></li>      
+                        <li><?php echo $this->Html->link('Lista mesas', array('controller' => 'mesas', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link('Nueva mesa', array('controller' => 'mesas', 'action' => 'nuevo')); ?></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cocineros <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><?php echo $this->Html->link('Lista cocineros',array('controller'=>'cocineros','action'=>'index')); ?></li>
-                        <li><?php echo $this->Html->link('Nuevo cocinero',array('controller'=>'cocineros','action'=>'add')); ?></li>      
+                        <li><?php echo $this->Html->link('Lista cocineros', array('controller' => 'cocineros', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link('Nuevo cocinero', array('controller' => 'cocineros', 'action' => 'add')); ?></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Platillos <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><?php echo $this->Html->link('Lista platillos',array('controller'=>'platillos','action'=>'index')); ?></li>
-                        <li><?php echo $this->Html->link('Nuevo platillo',array('controller'=>'platillos','action'=>'add')); ?></li>
+                        <li><?php echo $this->Html->link('Lista platillos', array('controller' => 'platillos', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link('Nuevo platillo', array('controller' => 'platillos', 'action' => 'add')); ?></li>
                         <li class="divider"></li>
-                        <li><?php echo $this->Html->link('Lista Categoria',array('controller'=>'categoria_platillos','action'=>'index')); ?></li>
-                        <li><?php echo $this->Html->link('Nueva Categoria',array('controller'=>'categoria_platillos','action'=>'add')); ?></li>      
+                        <li><?php echo $this->Html->link('Lista Categoria', array('controller' => 'categoria_platillos', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link('Nueva Categoria', array('controller' => 'categoria_platillos', 'action' => 'add')); ?></li>
                     </ul>
                 </li>
-                <li><?php echo $this->Html->link('Lista de ordenes',array('controller'=>'ordens','action'=>'index')) ?></li>
+                <li><?php echo $this->Html->link('Lista de ordenes', array('controller' => 'ordens', 'action' => 'index')) ?></li>
+                <li>
+                <?php echo $this->Form->create('Platillo', array('type' => 'GET', 'class' => 'navbar-form nacbar-left', 'url' => array('controller' => 'platillos', 'action' => 'search'))); ?>
+                <div class="form-group">
+                    <?php echo $this->Form->input('search', array('label' => false, 'div' => false, 'id' => 's', 'class' => 'form-control s', 'autocomplete' => 'off', 'placeholder' => 'Buscar platillo...')); ?>
+                </div>
+                <?php echo $this->Form->button('Buscar', array('div' => false, 'class' => 'btn btn-primary')); ?>
+                <?php echo $this->Form->end(); ?>
+                </li>
             </ul>
-    <?php echo $this->Html->link('Pedidos',array('controller'=>'pedidos','action'=>'view'),
-array('class'=>'btn btn-success navbar-btn')); ?>
+            <?php echo $this->Html->link(
+                'Pedidos',
+                array('controller' => 'pedidos', 'action' => 'view'),
+                array('class' => 'btn btn-success navbar-btn')
+            ); ?>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
