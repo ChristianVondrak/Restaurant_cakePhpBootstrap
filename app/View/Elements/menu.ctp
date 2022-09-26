@@ -43,6 +43,7 @@
                         <li><?php echo $this->Html->link('Nueva Categoria',array('controller'=>'categoria_platillos','action'=>'add')); ?></li>      
                     </ul>
                 </li>
+                <li><?php echo $this->Html->link('Lista de ordenes',array('controller'=>'ordens','action'=>'index')) ?></li>
             </ul>
     <?php echo $this->Html->link('Pedidos',array('controller'=>'pedidos','action'=>'view'),
 array('class'=>'btn btn-success navbar-btn')); ?>
