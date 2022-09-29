@@ -13,6 +13,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ususarios <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><?php echo $this->Html->link('Lista usuarios', array('controller' => 'users', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link('Nuevo usuario', array('controller' => 'users', 'action' => 'add')); ?></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Meseros <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><?php echo $this->Html->link('Lista meseros', array('controller' => 'meseros', 'action' => 'index')); ?></li>
@@ -45,12 +52,12 @@
                 </li>
                 <li><?php echo $this->Html->link('Lista de ordenes', array('controller' => 'ordens', 'action' => 'index')) ?></li>
                 <li>
-                <?php echo $this->Form->create('Platillo', array('type' => 'GET', 'class' => 'navbar-form nacbar-left', 'url' => array('controller' => 'platillos', 'action' => 'search'))); ?>
-                <div class="form-group">
-                    <?php echo $this->Form->input('search', array('label' => false, 'div' => false, 'id' => 's', 'class' => 'form-control s', 'autocomplete' => 'off', 'placeholder' => 'Buscar platillo...')); ?>
-                </div>
-                <?php echo $this->Form->button('Buscar', array('div' => false, 'class' => 'btn btn-primary')); ?>
-                <?php echo $this->Form->end(); ?>
+                    <?php echo $this->Form->create('Platillo', array('type' => 'GET', 'class' => 'navbar-form nacbar-left', 'url' => array('controller' => 'platillos', 'action' => 'search'))); ?>
+                    <div class="form-group">
+                        <?php echo $this->Form->input('search', array('label' => false, 'div' => false, 'id' => 's', 'class' => 'form-control s', 'autocomplete' => 'off', 'placeholder' => 'Buscar platillo...')); ?>
+                    </div>
+                    <?php echo $this->Form->button('Buscar', array('div' => false, 'class' => 'btn btn-primary')); ?>
+                    <?php echo $this->Form->end(); ?>
                 </li>
             </ul>
             <?php echo $this->Html->link(

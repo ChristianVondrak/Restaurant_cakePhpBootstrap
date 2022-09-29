@@ -22,8 +22,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <html>
 
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $cakeDescription ?>:
@@ -32,8 +32,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 	echo $this->Html->meta('icon');
 
-	echo $this->Html->css(array('style.css', 'bootstrap.min', 'bootstrap-theme.min','fileinput.min','jquery-ui.min'));
-	echo $this->Html->script(array('jquery.min','bootstrap.min','fileinput.min','jquery-ui.min','search'));
+	echo $this->Html->css(array('style.css', 'bootstrap.min', 'bootstrap-theme.min', 'fileinput.min', 'jquery-ui.min'));
+	echo $this->Html->script(array('jquery.min', 'bootstrap.min', 'fileinput.min', 'jquery-ui.min', 'search'));
 
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
@@ -51,18 +51,24 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <?php echo $this->element('menu') ?>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<?php if (isset($current_user)) : ?>
+		<?php echo $this->element('menu') ?>
+	<?php endif; ?>
+	<?php debug($current_user); ?>
 	<?php echo $this->Flash->render(); ?>
-		
-	<div class="col-md-9 col-md-offset-1">
-	<?php echo $this->fetch('content'); ?>
 
-	<br/>
-	<div id="msg"></div>
+	<div class="col-md-9 col-md-offset-1">
+
+		<?php echo $this->Session->flash(); ?>
+		<?php echo $this->Session->flash('auth'); ?>
+		<?php echo $this->fetch('content'); ?>
+
+		<br />
+		<div id="msg"></div>
 
 	</div>
-			
+
 
 
 </body>
