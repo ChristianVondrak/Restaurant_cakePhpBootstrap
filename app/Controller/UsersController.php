@@ -21,7 +21,7 @@ class UsersController extends AppController {
 	{
 		parent::beforeFilter();
 		
-		$this->Auth->allow('add');
+		//$this->Auth->allow('add');
 		
 	}
 	

@@ -8,6 +8,27 @@ class MesasController extends AppController{
         $this->set('mesas',$this->Mesa->find('all'));
     }
 
+    public function isAuthorized($user)
+	{
+		if($user['role'] == 'user')
+		{
+			if(in_array($this->action, array('nuevo', 'index', 'editar')))
+			{
+				return true;
+			}
+			else
+			{
+				if($this->Auth->user('id'))
+				{
+					$this->Session->setFlash('No puede acceder', 'default', array('class' => 'alert alert-danger'));
+					$this->redirect($this->Auth->redirect());
+				}
+			}
+		}
+		
+		return parent::isAuthorized($user);
+	}
+
     public function nuevo(){
         if ($this->request->is('post')) {
             $this->Mesa->create();

@@ -12,6 +12,8 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+
+            <?php if($current_user['role']=='admin'): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ususarios <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -19,6 +21,7 @@
                         <li><?php echo $this->Html->link('Nuevo usuario', array('controller' => 'users', 'action' => 'add')); ?></li>
                     </ul>
                 </li>
+                <?php endif; ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Meseros <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -33,6 +36,7 @@
                         <li><?php echo $this->Html->link('Nueva mesa', array('controller' => 'mesas', 'action' => 'nuevo')); ?></li>
                     </ul>
                 </li>
+                <?php if($current_user['role']=='admin'): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cocineros <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -40,6 +44,7 @@
                         <li><?php echo $this->Html->link('Nuevo cocinero', array('controller' => 'cocineros', 'action' => 'add')); ?></li>
                     </ul>
                 </li>
+                <?php endif; ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Platillos <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -50,7 +55,9 @@
                         <li><?php echo $this->Html->link('Nueva Categoria', array('controller' => 'categoria_platillos', 'action' => 'add')); ?></li>
                     </ul>
                 </li>
+                <?php if($current_user['role']=='admin'): ?>
                 <li><?php echo $this->Html->link('Lista de ordenes', array('controller' => 'ordens', 'action' => 'index')) ?></li>
+                <?php endif; ?>
                 <li>
                     <?php echo $this->Form->create('Platillo', array('type' => 'GET', 'class' => 'navbar-form nacbar-left', 'url' => array('controller' => 'platillos', 'action' => 'search'))); ?>
                     <div class="form-group">
@@ -65,6 +72,11 @@
                 array('controller' => 'pedidos', 'action' => 'view'),
                 array('class' => 'btn btn-success navbar-btn')
             ); ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <?php echo $this->Html->link('Salir',array('controller'=>'users','action'=>'logout')); ?>
+                </li>
+            </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

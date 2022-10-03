@@ -55,7 +55,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php if (isset($current_user)) : ?>
 		<?php echo $this->element('menu') ?>
 	<?php endif; ?>
-	<?php debug($current_user); ?>
+	
 	<?php echo $this->Flash->render(); ?>
 
 	<div class="col-md-9 col-md-offset-1">
