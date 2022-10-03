@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-09-2022 a las 13:58:12
+-- Tiempo de generación: 03-10-2022 a las 04:24:06
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -171,7 +171,8 @@ CREATE TABLE `ordens` (
 
 INSERT INTO `ordens` (`id`, `total`, `cliente`, `dni`, `mesa_id`, `created`, `modified`) VALUES
 (1, '50.00', 'Frank Ramirez', '123', 1, '2022-09-26 02:04:27', '2022-09-26 02:04:27'),
-(2, '124.00', 'Christian Vondrak', '27769583', 1, '2022-09-26 02:07:54', '2022-09-26 02:07:54');
+(2, '124.00', 'Christian Vondrak', '27769583', 1, '2022-09-26 02:07:54', '2022-09-26 02:07:54'),
+(3, '23.00', 'Ari', '123', 1, '2022-09-27 00:26:31', '2022-09-27 00:26:31');
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,9 @@ INSERT INTO `orden_items` (`id`, `platillo_id`, `orden_id`, `cantidad`, `subtota
 (3, 15, 1, 4, '32.00', '2022-09-26 02:04:27', '2022-09-26 02:04:27'),
 (4, 18, 2, 9, '54.00', '2022-09-26 02:07:54', '2022-09-26 02:07:54'),
 (5, 19, 2, 2, '10.00', '2022-09-26 02:07:54', '2022-09-26 02:07:54'),
-(6, 17, 2, 6, '60.00', '2022-09-26 02:07:54', '2022-09-26 02:07:54');
+(6, 17, 2, 6, '60.00', '2022-09-26 02:07:54', '2022-09-26 02:07:54'),
+(7, 11, 3, 2, '8.00', '2022-09-27 00:26:31', '2022-09-27 00:26:31'),
+(8, 16, 3, 3, '15.00', '2022-09-27 00:26:31', '2022-09-27 00:26:31');
 
 -- --------------------------------------------------------
 
@@ -250,6 +253,31 @@ INSERT INTO `platillos` (`id`, `nombre`, `descripcion`, `precio`, `foto`, `foto_
 (17, 'Hamburguesa de pollo crispy', 'Hamburguesa de pollo crispy desc', 10, 'hamburguesapollo.jpg', '17', '2022-09-21 02:18:56', '2022-09-21 02:18:56', 5),
 (18, 'Tenders con papas fritas', 'Tenders de pollo con papas fritas', 6, 'tenders.jpg', '18', '2022-09-21 02:22:05', '2022-09-21 02:22:05', 7),
 (19, 'Macarrones con queso', 'Macarrones con queso desc', 5, 'macarrones.jpg', '19', '2022-09-21 02:24:48', '2022-09-21 02:24:48', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(150) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(20) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `role`, `created`, `modified`) VALUES
+(1, 'Christian Vondrak', 'christianbros', '101010', 'admin', '2022-09-29 20:02:04', '2022-09-29 20:02:04'),
+(4, 'Carlos Sofua', 'sofu', '$2a$10$VLld6i25sOnEAGjyycgPheTPot9KNSCgj6ofNWFrAJGdalhXwrycO', 'user', '2022-09-29 20:52:15', '2022-09-29 20:52:15'),
+(6, 'Pepito Perez', 'pepe', '$2a$10$eFTmuszN/IOIUMaG.LHrJO8aOal.69SihyAbILfyVROt9bn.YjxVq', 'user', '2022-09-29 22:14:19', '2022-09-29 22:14:19');
 
 --
 -- Índices para tablas volcadas
@@ -310,6 +338,12 @@ ALTER TABLE `platillos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -347,25 +381,31 @@ ALTER TABLE `meseros`
 -- AUTO_INCREMENT de la tabla `ordens`
 --
 ALTER TABLE `ordens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_items`
 --
 ALTER TABLE `orden_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `platillos`
 --
 ALTER TABLE `platillos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
