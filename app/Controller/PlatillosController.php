@@ -17,7 +17,7 @@ class PlatillosController extends AppController {
 
 
     public $paginate = array(
-        'limit' => 12,
+        'limit' => 8,
         'order' => array(
             'Platillo.id' => 'asc'
         )
@@ -53,7 +53,7 @@ class PlatillosController extends AppController {
 	public function index() {
 		$this->Platillo->recursive = 0;
 
-		$this->paginate['Platillo']['limit'] = 12;
+		$this->paginate['Platillo']['limit'] = 8;
 		$this->paginate['Platillo']['order'] = array('Platillo.id' => 'asc');
 		$this->set('platillos', $this->paginate());
 	}

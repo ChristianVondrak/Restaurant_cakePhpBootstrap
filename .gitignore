@@ -9,6 +9,7 @@
 /dist
 /tags
 *.mo
+/node_modules
 
 # IDE and editor specific files #
 #################################

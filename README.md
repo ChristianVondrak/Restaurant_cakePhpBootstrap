@@ -18,7 +18,7 @@ El projecto trata sobre una aplicacion web que debe gestionar las tareas de un r
 
 - Dirigirte al directorio del proyecto
 - $ git clone https://github.com/ChristianVondrak/Restaurant_cakePhpBootstrap.git
-- Ejecutar el comando composer install.
+- Ejecutar el comando *composer install*.
 - editar conexion para la base de datos en app/database/config.php.example
 - Guardar config.php.example como config.php
 - SQL de ejemplo \app\Config\databasePrueba.php.
